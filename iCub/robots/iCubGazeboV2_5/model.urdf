@@ -544,6 +544,19 @@
     <child link="r_sole"/>
     <dynamics damping="0.1"/>
   </joint>
+  <link name="r_sole_ground_middle">
+    <!-- <inertial> -->
+    <!--   <origin xyz="0.0336001 0.0053719 -0.001147" rpy="-1.57079632679 0 -1.57079632679"/> -->
+    <!--   <mass value="0.382866"/> -->
+    <!--   <inertia ixx="0.00120946" ixy="3.74585e-07" ixz="-5.78759e-05" iyy="0.00141439" iyz="-7.80325e-06" izz="0.000273599"/> -->
+    <!-- </inertial> -->
+  </link>
+  <joint name="r_sole_ground_middle_fixed_joint" type="fixed">
+    <origin xyz="0.03 0.005 0.014" rpy="-3.14159265359 0 0"/>
+    <parent link="r_foot"/>
+    <child link="r_sole_ground_middle"/>
+    <dynamics damping="0.1"/>
+  </joint>
   <link name="r_sole_skin_0"/>
   <joint name="r_sole_skin_0_fixed_joint" type="fixed">
     <origin xyz="0.0604767 -0.0254106 0.0075" rpy="0 0 0"/>
@@ -974,6 +987,19 @@
     <origin xyz="0.0035 0 0.004" rpy="-3.14159265359 0 0"/>
     <parent link="l_foot"/>
     <child link="l_sole"/>
+    <dynamics damping="0.1"/>
+  </joint>
+  <link name="l_sole_ground_middle">
+    <!-- <inertial> -->
+    <!--   <origin xyz="0.0 0 0" rpy="0 0 0"/> -->
+    <!--   <mass value="0.00382968"/> -->
+    <!--   <inertia ixx="0.00121242" ixy="-3.69533e-07" ixz="5.79273e-05" iyy="0.00141712" iyz="-7.64972e-06" izz="0.000273846"/> -->
+    <!-- </inertial> -->
+  </link>
+  <joint name="l_sole_ground_middle_fixed_joint" type="fixed">
+    <origin xyz="0.03 -0.005 0.014" rpy="-3.14159265359 0 0"/>
+    <parent link="l_foot"/>
+    <child link="l_sole_ground_middle"/>
     <dynamics damping="0.1"/>
   </joint>
   <link name="l_sole_skin_0"/>
@@ -2211,7 +2237,15 @@
   <gazebo reference="l_leg_ft_sensor">
   <disableFixedJointLumping>true</disableFixedJointLumping>
 </gazebo>
-  <gazebo reference="r_foot_ft_sensor">
+<gazebo reference="r_foot_ft_sensor">
+  <disableFixedJointLumping>true</disableFixedJointLumping>
+</gazebo>
+
+<gazebo reference="l_sole_ground_middle_fixed_joint">
+  <disableFixedJointLumping>true</disableFixedJointLumping>
+</gazebo>
+
+<gazebo reference="r_sole_ground_middle_fixed_joint">
   <disableFixedJointLumping>true</disableFixedJointLumping>
 </gazebo>
   <gazebo reference="l_foot_ft_sensor">
@@ -2223,7 +2257,7 @@
     <threshold>100000</threshold>
   </bounce> </surface> </collision>
   <maxContacts>4</maxContacts>
-  <kp>200</kp>
+  <kp>10000</kp>
   <kd>100</kd>
   <maxVel>100</maxVel>
   <minDepth>0.0001</minDepth>
@@ -2237,7 +2271,7 @@
     <threshold>100000</threshold>
   </bounce> </surface> </collision>
   <maxContacts>4</maxContacts>
-  <kp>200</kp>
+  <kp>10000</kp>
   <kd>100</kd>
   <maxVel>100</maxVel>
   <minDepth>0.0001</minDepth>
